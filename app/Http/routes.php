@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('yusriyadi');
 });
+Route::get('/public', function () {
+    return "Nama : yusriyadi <br> Nim : 1515015005";
+});
+Route::get('pengguna/{pengguna}', function ($pengguna) {
+    return "<h1>Hallo sayang dari $pengguna <h1>";
+});
