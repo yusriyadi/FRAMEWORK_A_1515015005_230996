@@ -77,7 +77,7 @@
 	</div>
 	<nav class="navbar navbar-default navbar-fixed-bottom">
 		<footer class="container">
-			created by <a href=""><span><i class="fa fa-twitter" style="color:#1daf12"></i>betty</a>
+			created by <a href=""><span><i class="fa fa-twitter" style="color:#1daf12"></i>yusriyadi</a>
 		</footer>
 	</nav>
 	<script type="text/javascript" src="{{asset('component/jquery/dist/jquery.min.js')}}"></script>
