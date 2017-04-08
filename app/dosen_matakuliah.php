@@ -11,17 +11,24 @@ class dosen_matakuliah extends Model
 
 	public function dosen()
     {
-    	return $this->belongsTo(Dosen::class); //one to one ke model dosen
+    	return $this->belongsTo(Dosen::class,"dosen_id"); //one to one ke model dosen
     }
 
     public function matakuliah()
     {
-    	return $this->belongsTo(Matakuliah::class); //one to one ke model matakuliah
+    	return $this->belongsTo(Matakuliah::class,"matakuliah_id"); //one to one ke model matakuliah
     }
 
     public function jadwal_matkul()
     {
-    	return $this->hasMany(Jadwal_Matkul::class); //one to many ke model dosen
+    	return $this->hasMany(Jadwal_Matkul::class,"dosen_matakuliah_id");
+    }
+      public function listDosenDanMatakuliah(){
+        $out = [];
+        foreach ($this->all() as $dsnmtk) {
+            $out[$dsnmtk->id] = "{$dsnmtk->dosen->nama} (matakuliah {$dsnmtk->matakuliah->title})";
+        }
+        return $out;
     }
 
 }

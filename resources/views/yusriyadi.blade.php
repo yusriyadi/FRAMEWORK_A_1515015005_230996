@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">NAMA : YUSRIYADI <br> NIM : 1515015005</div>
+                <div class="title" ><p style="color: green">NAMA : YUSRIYADI <br> NIM : 1515015005</p></div>
             </div>
         </div>
     </body>
