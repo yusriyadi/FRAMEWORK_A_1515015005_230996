@@ -2,15 +2,31 @@
 
 
 use App\pengguna;
+use Illuminate\Http\Request;
 
 
-Route::get('/', function () {
-    return view('yusriyadi');
-});
-Route::get('/master', function () {
-    return view('master');
-});
-Route::auth();
+// Route::get('/', function () {
+//     return view('yusriyadi');
+// });
+//modul9
+Route::get('/login','SesiController@form');
+Route::post('/login','SesiController@validasi');
+Route::get('/logout/lihat/{/login}','SesiController@logout');
+Route::get('/','SesiController@index');
+Route::group(['middleware'=>'AutentifikasiUser'],function()
+{
+Route::get('pengguna','penggunacontroller@awal');
+Route::get('/pengguna/tambah','penggunacontroller@tambah');
+Route::get('pengguna/lihat/{pengguna}','penggunacontroller@lihat');
+Route::post('/pengguna/simpan','penggunacontroller@simpan');
+Route::get('/pengguna/edit/{pengguna}','penggunacontroller@edit');
+Route::post('/pengguna/edit/{pengguna}','penggunacontroller@update');
+Route::get('/pengguna/hapus/{pengguna}','penggunacontroller@hapus');
+
+// Route::get('/master', function () {
+//     return view('master');
+// });
+//Route::auth();
 // Route::get('/public', function () {
 //     return "Nama : yusriyadi <br> Nim : 1515015005";
 // });
@@ -81,6 +97,55 @@ Route::post('mahasiswa/simpan',"mahasiswaController@simpan");
 Route::get('mahasiswa/edit/{mahasiswa}',"mahasiswaController@edit");
 Route::post('mahasiswa/edit/simpan',"mahasiswaController@update");
 Route::get('mahasiswa/hapus/{mahasiswa}',"mahasiswaController@hapus");
+});
+
+// Route::get('ujiHas','RelationalshipRebornController@ujiHas');
+// Route::get('ujiDoesntHave','RelationalshipRebornController@ujiDoesntHave');
+
+// Route::get('/',function ()
+// {
+// 	return \App\dosen_matakuliah::whereHas('dosen',function ($query)
+// 	{
+// 		$query->where('nama','like','%s%');
+
+// 	})->with('dosen')->groupBy('dosen_id')->get();
+// 	});
+// Route::get('/',function ()
+// {
+
+// 		return \App\dosen_matakuliah::whereHas('dosen',function($query)
+// 		{
+// 			$query->where('nama','like','%s%');
+// 		})->orWhereHas('matakuliah',function($kueri)
+// 		{
+// 			$kueri->where('title','like','%a%');
+// 		})
+// 		->with('dosen','matakuliah')
+// 		->groupBy('dosen_id')
+// 		->get();
+// 		});
+
+//modul 8
+// Route::get('/',function (Illuminate\Http\Request $request)
+// {
+// 	echo "ini adalah request dari method get ".$request->nama;
+// }
+// 	);
+
+// Route::get('/',function()
+// {
+// 	echo Form::open(['url'=>'/']).
+// 		Form::label('nama').
+// 		Form::text('nama',null).
+// 		Form::submit('kirim').
+// 		Form::close();
+
+// });
+// Route::post('/',function(Request $request)
+// {
+// 	echo "hasil dari form input data nama : ".$request->nama;
+// }
+// 	);
 
 
 

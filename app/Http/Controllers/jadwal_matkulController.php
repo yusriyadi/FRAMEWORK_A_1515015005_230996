@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Http\Requests\JadwalRequest;
 use App\jadwal_matkul;
 use App\mahasiswa;
 use App\ruangan;
@@ -24,7 +24,7 @@ class jadwal_matkulController extends Controller
 		$dosen_matakuliah= new dosen_matakuliah;
 		return view ('jadwal_matkul.tambah',compact('mahasiswa','ruangan','dosen_matakuliah'));
 	}
-	public function simpan(Request $input)
+	public function simpan(JadwalRequest $input)
 	{
 		$jadwal_matkul=new jadwal_matkul($input->only('ruangan_id','dosen_matakuliah_id','mahasiswa_id'));
 		if($jadwal_matkul->save())$this->informasi="jadwal mahasiswa berhasil di simpan";
@@ -43,7 +43,7 @@ class jadwal_matkulController extends Controller
 		$jadwal_matkul= jadwal_matkul::find($id);
 		return view('jadwal_matkul.lihat')->with(array('jadwal_matkul'=>$jadwal_matkul));
 	}
-	public function update($id, Request $input)
+	public function update($id, jadwalRequest $input)
 	{
 		$jadwal_matkul=jadwal_matkul::find($id);
 		$jadwal_matkul->ruangan_id=$input->ruangan_id;

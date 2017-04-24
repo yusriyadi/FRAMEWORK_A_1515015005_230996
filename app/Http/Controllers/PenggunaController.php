@@ -16,8 +16,13 @@ class PenggunaController extends Controller
 	public function tambah(){
 		return view('pengguna.tambah');
 	}
-	public function simpan(Requests $input)
+	public function simpan(Request $input)
 	{
+		$this->validate($input,[
+			'username'=>'required',
+			'password'=>'required',
+			]);
+
 		$pengguna = new Pengguna();
 		$pengguna->username= $input->username;
 		$pengguna->password= $input->password;
